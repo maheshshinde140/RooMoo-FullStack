@@ -53,7 +53,7 @@ export default function SignUp() {
             <p className="mx-4 p-1 font-bold text-[25px]">Sign Up</p>
           </div>
 
-          <div className="mx-4 my-3">
+          <div className="mx-4 my-6">
             <span className="text-[16px] cursor-default font-semibold">
               Full Name of user
             </span>
@@ -89,7 +89,7 @@ export default function SignUp() {
             />
           </div>
 
-          <div className="flex justify-between px-4 mt-8 lg:text-[15px]  text-[13px] ">
+          <div className="flex justify-between px-4 mt-11 lg:text-[15px]  text-[13px] ">
             <p>
               Have a Account?
               <Link
@@ -123,7 +123,7 @@ export default function SignUp() {
               className="flex items-center  my-3 before:border-t  before:flex-1 before:border-gray-300 
           after:border-t  after:flex-1 after:border-gray-300 "
             >
-              <p className="text-center font-semibold mx-4 ">OR</p>
+              
             </div>
           </div>
           {error && <p className="text-red-500 mt-5">{error}</p>}
