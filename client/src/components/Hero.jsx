@@ -6,7 +6,6 @@ import { BiSearchAlt } from 'react-icons/bi';
 const Hero = () => {
   const location = useLocation();
   const navigate = useNavigate();
-  console.log(location.pathname);
   function pathMathRoute(route){
     if(route == location.pathname){
       return true
