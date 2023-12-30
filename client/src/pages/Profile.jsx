@@ -14,6 +14,7 @@ import {
   deleteUserFailure,
   deleteUserStart,
   deleteUserSuccess,
+  signOutUserStart,
 } from "../redux/user/userSlice";
 
 export default function Profile() {
@@ -106,6 +107,21 @@ export default function Profile() {
     }
   };
 
+  const handleSignOut = async () => {
+    try {
+      dispatch(signOutUserStart());
+      const res = await fetch("/api/auth/signout");
+      const data = await res.json();
+      if (data.success === false) {
+        dispatch(deleteUserFailure(data.message));
+        return;
+      }
+      dispatch(deleteUserSuccess(data));
+    } catch (error) {
+      dispatch(deleteUserFailure(data.message));
+    }
+  };
+
   return (
     <section className="flex items-center justify-center space-x-1 lg:space-x-40 max-w-6xl mx-auto">
       <div className="bg-[#F0FDF4] border-[3px] mt-9 w-[440px] md:w-[450px] lg:w-[500px] h-[480px] rounded-[0.6rem] shadow-lg max-w-lg mx-auto">
@@ -175,20 +191,24 @@ export default function Profile() {
           </div>
         </form>
 
-        <div className="flex justify-between mx-3 my-5">
+        <div className="flex justify-between mx-5 lg:mx-6 my-5">
           <span
             onClick={handleDeleteUser}
             className="text-red-700 cursor-pointer"
           >
-            Delete Account
+            <button className="w-[190px] lg:w-[220px] text-white font-medium text-sm bg-red-600 px-7 py-1 mt-4 rounded-md shadow-sm hover:bg-red-700 transition duration-150 ease-in-out hover:shadow-lg active:bg-red-800 uppercase">
+              Delete Account
+            </button>
           </span>
-          <span className="text-red-700 cursor-pointer">Sign out</span>
+          <span onClick={handleSignOut} className="text-red-700 cursor-pointer">
+            <button className="w-[190px] lg:w-[220px] text-white font-medium text-sm bg-green-600 px-7 py-1 mt-4 rounded-md shadow-sm hover:bg-green-700 transition duration-150 ease-in-out hover:shadow-lg active:bg-green-800 uppercase">Sign out</button>
+          </span>
         </div>
 
-        <p className='text-red-700 mt-5'>{error ? error : ''}</p>
-      <p className='text-green-700 mt-5'>
-        {updateSuccess ? 'User is updated successfully! 😎' : ''}
-      </p>
+        <p className="text-red-700 mt-5">{error ? error : ""}</p>
+        <p className="text-green-700 mt-5">
+          {updateSuccess ? "User is updated successfully! 😎" : ""}
+        </p>
       </div>
     </section>
   );
