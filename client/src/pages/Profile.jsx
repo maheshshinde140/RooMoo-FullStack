@@ -1,4 +1,4 @@
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useRef, useState, useEffect } from "react";
 import {
   getDownloadURL,
@@ -7,6 +7,11 @@ import {
   uploadBytesResumable,
 } from "firebase/storage";
 import { app } from "../firebase";
+import {
+  updateUserStart,
+  updateUserSuccess,
+  updateUserFailure,
+} from "../redux/user/userSlice";
 
 export default function Profile() {
   const fileRef = useRef(null);
@@ -15,9 +20,7 @@ export default function Profile() {
   const [filePerc, setFilePerc] = useState(0);
   const [fileUploadError, setFileuploadError] = useState(false);
   const [formData, setFormdData] = useState({});
-  console.log(formData);
-  console.log(filePerc);
-  console.log(fileUploadError);
+  const dispatch = useDispatch();
 
   // firebase storage
   // allow read;
@@ -54,14 +57,44 @@ export default function Profile() {
       }
     );
   };
+
+  const handleChange = (e) => {
+    setFormdData({ ...formData, [e.target.id]: e.target.value });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      dispatch(updateUserStart());
+      const res = await fetch(`/api/user/update/${currentUser._id}`,{
+        method:'POST',
+        headers: {
+          'Content-Type':'application/json',
+      },
+      body: JSON.stringify(formData),
+    });
+    const data = await res.json();
+    if (data.success === false) {
+      dispatch(updateUserFailure(data.message));
+      return;
+    }
+    dispatch(updateUserSuccess(data));
+      } catch (error) {
+      dispatch(updateUserFailure(error.message));
+    }
+  };
+
   return (
     <section className="flex items-center justify-center space-x-1 lg:space-x-40 max-w-6xl mx-auto">
-      <div className="bg-[#F0FDF4] border-[3px] mt-9 w-[440px] md:w-[450px] lg:w-[500px] h-[480px] rounded-[0.6rem] shadow-lg">
+      <div className="bg-[#F0FDF4] border-[3px] mt-9 w-[440px] md:w-[450px] lg:w-[500px] h-[480px] rounded-[0.6rem] shadow-lg max-w-lg mx-auto">
         <div className=" font-bold text-white text-[25px]  bg-[#ed5012] rounded-[0.4rem]  h-[48px] ">
           <p className="mx-4 p-1 font-bold text-[25px]">Profile</p>
         </div>
 
-        <form className="flex flex-col py-3 space-y-1 items-center justify-center">
+        <form
+          onSubmit={handleSubmit}
+          className="flex flex-col py-3 space-y-1 items-center justify-center"
+        >
           <input
             onChange={(e) => setFile(e.target.files[0])}
             type="file"
@@ -77,7 +110,9 @@ export default function Profile() {
           />
           <p className="text-sm self-center">
             {fileUploadError ? (
-              <span className="text-red-700">Error Image upload (image must be less than 2 mb)</span>
+              <span className="text-red-700">
+                Error Image upload (image must be less than 2 mb)
+              </span>
             ) : filePerc > 0 && filePerc < 100 ? (
               <span className="text-green-700">{`Uploading ${filePerc}%`}</span>
             ) : filePerc === 100 ? (
@@ -92,19 +127,24 @@ export default function Profile() {
             type="text"
             placeholder="username"
             id="username"
-            className="border p-3 rounde-lg"
+            defaultValue={currentUser.username}
+            className="border w-[400px] lg:w-[430px] p-3 rounde-lg font-medium"
+            onChange={handleChange}
           />
           <input
             type="email"
-            placeholder="username"
-            id="username"
-            className="border p-3 rounde-lg"
+            placeholder="email"
+            id="email"
+            defaultValue={currentUser.email}
+            className="border w-[400px] lg:w-[430px] p-3 rounde-lg font-medium"
+            onChange={handleChange}
           />
           <input
             type="text"
-            placeholder="username"
-            id="username"
-            className="border p-3 rounde-lg"
+            placeholder="password"
+            id="password"
+            className="border w-[400px] lg:w-[430px] p-3 rounde-lg font-medium"
+            onChange={handleChange}
           />
           <div className="2">
             <button className="w-[400px] lg:w-[440px] text-white font-medium text-sm bg-blue-600 px-7 py-2 mt-4 rounded-md shadow-sm hover:bg-blue-700 transition duration-150 ease-in-out hover:shadow-lg active:bg-blue-800 uppercase">
