@@ -5,7 +5,7 @@ export default function CreateListing() {
     <main>
       <section>
         <form className="flex flex-col sm:flex-row gap-4 ">
-          <div className="bg-[#F0FDF4] border-[3px] mt-9 w-[690px] md:w-[700px] lg:w-[1000px] h-[630px] rounded-[0.6rem] shadow-lg  mx-auto">
+          <div className="bg-[#F0FDF4] border-[3px] mt-9 w-[690px] md:w-[700px] lg:w-[1000px] sm:h-[700px] lg:h-[630px] rounded-[0.6rem] shadow-lg  mx-auto">
             <div className=" font-bold text-white text-[25px]  bg-[#ed5012] rounded-[0.4rem]  h-[48px] ">
               <p className="mx-4 p-1 font-bold text-[25px]">Upload Property</p>
             </div>
