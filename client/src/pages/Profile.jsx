@@ -1,5 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useRef, useState, useEffect } from "react";
+import {Link} from 'react-router-dom';
 import {
   getDownloadURL,
   getStorage,
@@ -19,7 +20,7 @@ import {
 
 export default function Profile() {
   const fileRef = useRef(null);
-  const { currentUser, error } = useSelector((state) => state.user);
+  const { currentUser, error, loading } = useSelector((state) => state.user);
   const [file, setFile] = useState(undefined);
   const [filePerc, setFilePerc] = useState(0);
   const [fileUploadError, setFileuploadError] = useState(false);
@@ -124,14 +125,14 @@ export default function Profile() {
 
   return (
     <section className="flex items-center justify-center space-x-1 lg:space-x-40 max-w-6xl mx-auto">
-      <div className="bg-[#F0FDF4] border-[3px] mt-9 w-[440px] md:w-[450px] lg:w-[500px] h-[480px] rounded-[0.6rem] shadow-lg max-w-lg mx-auto">
+      <div className="bg-[#F0FDF4] border-[3px] mt-9 w-[440px] md:w-[450px] lg:w-[500px] h-[540px] rounded-[0.6rem] shadow-lg max-w-lg mx-auto">
         <div className=" font-bold text-white text-[25px]  bg-[#ed5012] rounded-[0.4rem]  h-[48px] ">
           <p className="mx-4 p-1 font-bold text-[25px]">Profile</p>
         </div>
 
         <form
           onSubmit={handleSubmit}
-          className="flex flex-col py-3 space-y-1 items-center justify-center"
+          className="flex flex-col py-3 space-y-2 items-center justify-center"
         >
           <input
             onChange={(e) => setFile(e.target.files[0])}
@@ -184,24 +185,30 @@ export default function Profile() {
             className="border w-[400px] lg:w-[430px] p-3 rounde-lg font-medium"
             onChange={handleChange}
           />
-          <div className="2">
+          <div className="">
             <button className="w-[400px] lg:w-[440px] text-white font-medium text-sm bg-blue-600 px-7 py-2 mt-4 rounded-md shadow-sm hover:bg-blue-700 transition duration-150 ease-in-out hover:shadow-lg active:bg-blue-800 uppercase">
-              update
+              {loading ? 'Loading...' : 'Update'}
             </button>
+            <div >
+              <Link className="" to={"/create-listing"}>
+              <button className="w-[400px] lg:w-[440px] text-white font-medium text-sm bg-slate-700 px-7 py-2 mt-4 rounded-md shadow-sm hover:bg-slate-800 transition duration-150 ease-in-out hover:shadow-lg active:bg-slate-900 uppercase">Create Listing</button>
+            </Link>
+            </div>
+            
           </div>
         </form>
 
-        <div className="flex justify-between mx-5 lg:mx-6 my-5">
+        <div className="flex justify-between mx-5 lg:mx-7 my-1">
           <span
             onClick={handleDeleteUser}
             className="text-red-700 cursor-pointer"
           >
-            <button className="w-[190px] lg:w-[220px] text-white font-medium text-sm bg-red-600 px-7 py-1 mt-4 rounded-md shadow-sm hover:bg-red-700 transition duration-150 ease-in-out hover:shadow-lg active:bg-red-800 uppercase">
+            <button className="w-[190px] lg:w-[200px] text-white font-medium text-sm bg-red-600 px-7 py-1 mt-4 rounded-md shadow-sm hover:bg-red-700 transition duration-150 ease-in-out hover:shadow-lg active:bg-red-800 uppercase">
               Delete Account
             </button>
           </span>
           <span onClick={handleSignOut} className="text-red-700 cursor-pointer">
-            <button className="w-[190px] lg:w-[220px] text-white font-medium text-sm bg-green-600 px-7 py-1 mt-4 rounded-md shadow-sm hover:bg-green-700 transition duration-150 ease-in-out hover:shadow-lg active:bg-green-800 uppercase">Sign out</button>
+            <button className="w-[190px] lg:w-[200px] text-white font-medium text-sm bg-green-600 px-7 py-1 mt-4 rounded-md shadow-sm hover:bg-green-700 transition duration-150 ease-in-out hover:shadow-lg active:bg-green-800 uppercase">Sign out</button>
           </span>
         </div>
 
