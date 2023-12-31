@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useRef, useState, useEffect } from "react";
-import {Link} from 'react-router-dom';
+import { Link } from "react-router-dom";
 import {
   getDownloadURL,
   getStorage,
@@ -26,6 +26,8 @@ export default function Profile() {
   const [fileUploadError, setFileuploadError] = useState(false);
   const [updateSuccess, setupdateSuccess] = useState(false);
   const [formData, setFormdData] = useState({});
+  const [showListingsError, setShowListingsError] = useState(false);
+  const [userListings, setUserListings] = useState([]);
   const dispatch = useDispatch();
 
   // firebase storage
@@ -123,9 +125,25 @@ export default function Profile() {
     }
   };
 
+  const handleShowListings = async () => {
+    try {
+      setShowListingsError(false);
+      const res = await fetch(`/api/user/listings/${currentUser._id}`);
+      const data = await res.json();
+      if (data.success === false) {
+        setShowListingsError(true);
+        return;
+      }
+
+      setUserListings(data);
+    } catch (error) {
+      setShowListingsError(true);
+    }
+  };
+
   return (
-    <section className="flex items-center justify-center space-x-1 lg:space-x-40 max-w-6xl mx-auto">
-      <div className="bg-[#F0FDF4] border-[3px] mt-9 w-[440px] md:w-[450px] lg:w-[500px] h-[540px] rounded-[0.6rem] shadow-lg max-w-lg mx-auto">
+    <section className="flex sm:flex-col lg:flex-row items-center justify-center space-x-1 lg:space-x-40 max-w-6xl mx-auto">
+      <div className="bg-[#F0FDF4] border-[3px] mt-9 w-[440px] md:w-[450px] lg:w-[500px] h-[595px] rounded-[0.6rem] shadow-lg max-w-lg mx-auto">
         <div className=" font-bold text-white text-[25px]  bg-[#ed5012] rounded-[0.4rem]  h-[48px] ">
           <p className="mx-4 p-1 font-bold text-[25px]">Profile</p>
         </div>
@@ -187,14 +205,15 @@ export default function Profile() {
           />
           <div className="">
             <button className="w-[400px] lg:w-[440px] text-white font-medium text-sm bg-blue-600 px-7 py-2 mt-4 rounded-md shadow-sm hover:bg-blue-700 transition duration-150 ease-in-out hover:shadow-lg active:bg-blue-800 uppercase">
-              {loading ? 'Loading...' : 'Update'}
+              {loading ? "Loading..." : "Update"}
             </button>
-            <div >
+            <div>
               <Link className="" to={"/create-listing"}>
-              <button className="w-[400px] lg:w-[440px] text-white font-medium text-sm bg-green-600 px-7 py-2 mt-4 rounded-md shadow-sm hover:bg-green-700 transition duration-150 ease-in-out hover:shadow-lg active:bg-green-800 uppercase">Upload Property</button>
-            </Link>
+                <button className="w-[400px] lg:w-[440px] text-white font-medium text-sm bg-green-600 px-7 py-2 mt-4 rounded-md shadow-sm hover:bg-green-700 transition duration-150 ease-in-out hover:shadow-lg active:bg-green-800 uppercase">
+                  Upload Property
+                </button>
+              </Link>
             </div>
-            
           </div>
         </form>
 
@@ -208,7 +227,9 @@ export default function Profile() {
             </button>
           </span>
           <span onClick={handleSignOut} className="text-red-700 cursor-pointer">
-            <button className="w-[190px] lg:w-[200px] text-white font-medium text-sm bg-slate-700 px-7 py-1 mt-4 rounded-md shadow-sm hover:bg-slate-800 transition duration-150 ease-in-out hover:shadow-lg active:bg-slate-900 uppercase">Sign out</button>
+            <button className="w-[190px] lg:w-[200px] text-white font-medium text-sm bg-slate-700 px-7 py-1 mt-4 rounded-md shadow-sm hover:bg-slate-800 transition duration-150 ease-in-out hover:shadow-lg active:bg-slate-900 uppercase">
+              Sign out
+            </button>
           </span>
         </div>
 
@@ -216,7 +237,57 @@ export default function Profile() {
         <p className="text-green-700 mt-5">
           {updateSuccess ? "User is updated successfully! 😎" : ""}
         </p>
-      </div>
+        <div className="flex justify-center items-center">
+          <button onClick={handleShowListings} className="text-green-700 p-1 uppercase font-medium text-sm px-8 rounded-lg bg-white hover:bg-green-500 hover:text-white shadow-sm transition duration-450 ease-in-out border-black border-[2px]">
+          Show Properties
+        </button>
+        </div>
+        
+        <p className="text-red-700 mt-5">
+          {showListingsError ? "Error showing listings" : ""}
+        </p>
+        </div>
+
+        {userListings && userListings.length > 0 && (
+        <div className='flex flex-col gap-4 bg-[#F0FDF4] border-[3px] mt-9 w-[440px] md:w-[450px] lg:w-[500px] h-[595px] rounded-[0.6rem] shadow-lg max-w-lg mx-auto'>
+          <div className=" font-bold text-white text-[25px]  bg-[#ed5012] rounded-[0.4rem]  h-[48px] ">
+          <p className="mx-4 p-1 font-bold text-[25px]">Your Properties</p>
+        </div>
+          {userListings.map((listing) => (
+            <div
+              key={listing._id}
+              className='border-[1px] border-gray-400 bg-white rounded-lg p-3 mx-2 flex justify-between items-center gap-4'
+            >
+              <Link to={`/listing/${listing._id}`}>
+                <img
+                  src={listing.imageUrls[0]}
+                  alt='listing cover'
+                  className='h-16 w-16 object-contain'
+                />
+              </Link>
+              <Link
+                className='text-slate-700 font-semibold  hover:underline truncate flex-1'
+                to={`/listing/${listing._id}`}
+              >
+                <p>{listing.name}</p>
+              </Link>
+
+              <div className='flex flex-col item-center'>
+                <button
+                  onClick={() => handleListingDelete(listing._id)}
+                  className='text-red-700 uppercase'
+                >
+                  Delete
+                </button>
+                <Link to={`/update-listing/${listing._id}`}>
+                  <button className='text-green-700 uppercase'>Edit</button>
+                </Link>
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
+      
     </section>
   );
 }
