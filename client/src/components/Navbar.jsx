@@ -57,11 +57,11 @@ export default function Navbar() {
         </ul>
 
         <div className=" items-center  pl-6 text-[15px] font-bold ">
-          <div className="  bg-[#dc4a11] p-2 mr-2 text-white rounded-full px-4 ml-4 font-bold hover:bg-[#f35313] transition duration-150 ease-in-out cursor-pointer">
+          <div className=" ">
             <Link to="/profile">
               {currentUser ? (
-                <img className=" rounded-full h-8 w-8 object-cover border-yellow-200 border-[2px]" src={currentUser.avatar} alt="profile" />
-              ):( <button className="p-[1px]">Sign In</button>
+                <img className=" rounded-full h-9 w-9 object-cover border-[2px] shadow-sm hover:shadow-black border-black" src={currentUser.avatar} alt="profile" />
+              ):( <button className=" bg-[#dc4a11] p-2 mr-2 text-white rounded-full px-4 ml-4 font-bold hover:bg-[#f35313] transition duration-150 ease-in-out cursor-pointerp-[1px]">Sign In</button>
               ) }
             </Link>
           </div>

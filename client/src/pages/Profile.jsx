@@ -191,7 +191,7 @@ export default function Profile() {
             </button>
             <div >
               <Link className="" to={"/create-listing"}>
-              <button className="w-[400px] lg:w-[440px] text-white font-medium text-sm bg-slate-700 px-7 py-2 mt-4 rounded-md shadow-sm hover:bg-slate-800 transition duration-150 ease-in-out hover:shadow-lg active:bg-slate-900 uppercase">Create Listing</button>
+              <button className="w-[400px] lg:w-[440px] text-white font-medium text-sm bg-green-600 px-7 py-2 mt-4 rounded-md shadow-sm hover:bg-green-700 transition duration-150 ease-in-out hover:shadow-lg active:bg-green-800 uppercase">Upload Property</button>
             </Link>
             </div>
             
@@ -208,7 +208,7 @@ export default function Profile() {
             </button>
           </span>
           <span onClick={handleSignOut} className="text-red-700 cursor-pointer">
-            <button className="w-[190px] lg:w-[200px] text-white font-medium text-sm bg-green-600 px-7 py-1 mt-4 rounded-md shadow-sm hover:bg-green-700 transition duration-150 ease-in-out hover:shadow-lg active:bg-green-800 uppercase">Sign out</button>
+            <button className="w-[190px] lg:w-[200px] text-white font-medium text-sm bg-slate-700 px-7 py-1 mt-4 rounded-md shadow-sm hover:bg-slate-800 transition duration-150 ease-in-out hover:shadow-lg active:bg-slate-900 uppercase">Sign out</button>
           </span>
         </div>
 
