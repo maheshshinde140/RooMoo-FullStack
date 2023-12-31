@@ -141,6 +141,25 @@ export default function Profile() {
     }
   };
 
+  const handleListingDelete = async (listingId) => {
+    try {
+      const res = await fetch(`/api/listing/delete/${listingId}`, {
+        method: 'DELETE',
+      });
+      const data = await res.json();
+      if (data.success === false) {
+        console.log(data.message);
+        return;
+      }
+
+      setUserListings((prev) =>
+        prev.filter((listing) => listing._id !== listingId)
+      );
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+
   return (
     <section className="flex sm:flex-col lg:flex-row items-center justify-center space-x-1 lg:space-x-40 max-w-6xl mx-auto">
       <div className="bg-[#F0FDF4] border-[3px] mt-9 w-[440px] md:w-[450px] lg:w-[500px] h-[595px] rounded-[0.6rem] shadow-lg max-w-lg mx-auto">
@@ -204,12 +223,12 @@ export default function Profile() {
             onChange={handleChange}
           />
           <div className="">
-            <button className="w-[400px] lg:w-[440px] text-white font-medium text-sm bg-blue-600 px-7 py-2 mt-4 rounded-md shadow-sm hover:bg-blue-700 transition duration-150 ease-in-out hover:shadow-lg active:bg-blue-800 uppercase">
+            <button className="w-[400px] lg:w-[440px] text-white font-medium text-sm bg-green-600 px-7 py-2 mt-4 rounded-md shadow-sm hover:bg-green-700 transition duration-150 ease-in-out hover:shadow-lg active:bg-green-800 uppercase">
               {loading ? "Loading..." : "Update"}
             </button>
             <div>
               <Link className="" to={"/create-listing"}>
-                <button className="w-[400px] lg:w-[440px] text-white font-medium text-sm bg-green-600 px-7 py-2 mt-4 rounded-md shadow-sm hover:bg-green-700 transition duration-150 ease-in-out hover:shadow-lg active:bg-green-800 uppercase">
+                <button className="w-[400px] lg:w-[440px] text-white font-medium text-sm bg-blue-600 px-7 py-2 mt-4 rounded-md shadow-sm hover:bg-blue-700 transition duration-150 ease-in-out hover:shadow-lg active:bg-blue-800 uppercase">
                   Upload Property
                 </button>
               </Link>
@@ -238,7 +257,7 @@ export default function Profile() {
           {updateSuccess ? "User is updated successfully! 😎" : ""}
         </p>
         <div className="flex justify-center items-center">
-          <button onClick={handleShowListings} className="text-green-700 p-1 uppercase font-medium text-sm px-8 rounded-lg bg-white hover:bg-green-500 hover:text-white shadow-sm transition duration-450 ease-in-out border-black border-[2px]">
+          <button onClick={handleShowListings} className="text-green-700 p-1 uppercase font-medium text-sm px-8 rounded-lg bg-white hover:bg-green-500  hover:text-white shadow-sm transition duration-450 ease-in-out border-black border-[2px]">
           Show Properties
         </button>
         </div>
@@ -265,22 +284,31 @@ export default function Profile() {
                   className='h-16 w-16 object-contain'
                 />
               </Link>
-              <Link
+              <div className="flex flex-col gap-1">
+                <Link
                 className='text-slate-700 font-semibold  hover:underline truncate flex-1'
                 to={`/listing/${listing._id}`}
               >
                 <p>{listing.name}</p>
               </Link>
+              <Link
+                className='text-slate-700 text-wrap w-[200px]  truncate flex-1'
+                to={`/listing/${listing._id}`}
+              >
+                <p>{listing.address}</p>
+              </Link>
+              </div>
+              
 
-              <div className='flex flex-col item-center'>
+              <div className='flex flex-col item-center gap-2'>
                 <button
                   onClick={() => handleListingDelete(listing._id)}
-                  className='text-red-700 uppercase'
+                  className='text-red-700 uppercase hover:font-medium'
                 >
                   Delete
                 </button>
                 <Link to={`/update-listing/${listing._id}`}>
-                  <button className='text-green-700 uppercase'>Edit</button>
+                  <button className='text-green-700 uppercase hover:font-medium'>Edit</button>
                 </Link>
               </div>
             </div>
