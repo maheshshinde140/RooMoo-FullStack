@@ -161,8 +161,9 @@ export default function Profile() {
   };
 
   return (
-    <section className="flex sm:flex-col lg:flex-row items-center justify-center space-x-1 lg:space-x-40 max-w-6xl mx-auto">
-      <div className="bg-[#F0FDF4] border-[3px] mt-9 w-[440px] md:w-[450px] lg:w-[500px] h-[595px] rounded-[0.6rem] shadow-lg max-w-lg mx-auto">
+    <section className="flex sm:flex-col  lg:flex-row  items-center justify-center space-x-1 lg:space-x-40 max-w-6xl mx-auto">
+      <div className="flex flex-wrap lg:flex-row sm:flex-col lg:space-x-28 sm:space-x-0 ">
+      <div className="bg-[#F0FDF4] border-[3px] mt-9 w-[440px] md:w-[450px] lg:w-[500px] h-[620px] rounded-[0.6rem] shadow-lg max-w-lg mx-auto">
         <div className=" font-bold text-white text-[25px]  bg-[#ed5012] rounded-[0.4rem]  h-[48px] ">
           <p className="mx-4 p-1 font-bold text-[25px]">Profile</p>
         </div>
@@ -236,7 +237,7 @@ export default function Profile() {
           </div>
         </form>
 
-        <div className="flex justify-between mx-5 lg:mx-7 my-1">
+        <div className="flex justify-between mx-5 lg:mx-7 my-6">
           <span
             onClick={handleDeleteUser}
             className="text-red-700 cursor-pointer"
@@ -256,7 +257,7 @@ export default function Profile() {
         <p className="text-green-700 mt-5">
           {updateSuccess ? "User is updated successfully! 😎" : ""}
         </p>
-        <div className="flex justify-center items-center">
+        <div className="flex justify-center items-center ">
           <button onClick={handleShowListings} className="text-green-700 p-1 uppercase font-medium text-sm px-8 rounded-lg bg-white hover:bg-green-500  hover:text-white shadow-sm transition duration-450 ease-in-out border-black border-[2px]">
           Show Properties
         </button>
@@ -315,6 +316,8 @@ export default function Profile() {
           ))}
         </div>
       )}
+      </div>
+     
       
     </section>
   );

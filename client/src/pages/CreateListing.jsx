@@ -21,7 +21,7 @@ export default function CreateListing() {
     type: "rent",
     bedrooms: 1,
     bathrooms: 1,
-    regularPrice: 50,
+    regularPrice: 1000,
     discountPrice: 0,
     offer: false,
     parking: false,
@@ -168,7 +168,7 @@ export default function CreateListing() {
             <div className="flex flex-col gap-4 flex-1">
               <input
                 type="text"
-                placeholder="Name"
+                placeholder="House Name"
                 className="border-[1px] border-gray-400 p-3 rounded-lg"
                 id="name"
                 maxLength="62"

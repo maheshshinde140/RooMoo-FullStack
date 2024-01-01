@@ -8,6 +8,11 @@ import Navbar from "./components/Navbar";
 import PrivateRoute from "./components/privateRoute";
 import CreateListing from "./pages/CreateListing";
 import UpdateListing from "./pages/UpdateListing";
+import Listing from "./pages/Listings";
+import Search from './pages/Search';
+import Connect from "./pages/Connect";
+
+
 
 export default function App() {
   return (
@@ -18,6 +23,10 @@ export default function App() {
         <Route path="/sign-in" element={<SignIn />} />
         <Route path="/sign-up" element={<SignUp />} />
         <Route path="/about" element={<About />} />
+        <Route path="/connect" element={<Connect />} />
+        <Route path="/search" element={<Search />} />
+        <Route path='/listing/:listingId' element={<Listing />} />
+        
         <Route element={<PrivateRoute />}>
           <Route path="/profile" element={<Profile />} />
           <Route path="/create-listing" element={<CreateListing />} />
