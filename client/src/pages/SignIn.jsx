@@ -8,6 +8,7 @@ import {
   signInFailure,
 } from "../redux/user/userSlice";
 import OAuth from "../components/OAuth";
+import { toast } from "react-toastify";
 
 export default function SignIn() {
   const [formData, setFormdData] = useState({});
@@ -39,6 +40,7 @@ export default function SignIn() {
       navigate("/");
     } catch (error) {
       dispatch(signInFailure(error.message));
+      toast.error("Bad user credentials");
     }
   };
 
@@ -54,67 +56,64 @@ export default function SignIn() {
           <div className=" font-bold text-white text-[25px]  bg-[#ed5012] rounded-[0.4rem]   ">
             <p className="mx-4 p-1 font-bold text-[25px]">Sign In</p>
           </div>
-          
+
           <div className="flex flex-col mt-4 mx-2 space-y-2 ">
-         
+            <div className="flex flex-col ">
+              <span className="text-[16px] cursor-default font-semibold">
+                Email or Mobile phone Number
+              </span>
+              <input
+                className=" mt-2 px-4 py-2 text-xl text-gray-800 bg-white border-[1px] border-gray-400 rounded transition ease-out"
+                type="email"
+                id="email"
+                onChange={handleChange}
+              />
+            </div>
 
-          <div className="flex flex-col ">
-            <span className="text-[16px] cursor-default font-semibold">
-              Email or Mobile phone Number
-            </span>
-            <input
-              className=" mt-2 px-4 py-2 text-xl text-gray-800 bg-white border-[1px] border-gray-400 rounded transition ease-out"
-              type="email"
-              id="email"
-              onChange={handleChange}
-            />
+            <div className="flex flex-col ">
+              <span className="text-[16px] cursor-default font-semibold">
+                Password
+              </span>
+              <input
+                type="password"
+                className=" mt-2 px-4 py-2 text-xl text-gray-800 bg-white border-[1px] border-gray-400 rounded transition ease-out"
+                id="password"
+                onChange={handleChange}
+              />
+            </div>
+
+            <div className="flex justify-between  pt-5 lg:text-[15px]  text-[13px] ">
+              <p>
+                Don't have an Account?
+                <Link
+                  to="/sign-up"
+                  className="text-red-600 font-medium hover:text-red-700 transition duration-200 ease-in-out"
+                >
+                  sign up
+                </Link>
+              </p>
+
+              <p>
+                <Link
+                  to="/forgot-password"
+                  className="text-blue-500 font-medium hover:text-blue-600"
+                >
+                  Forgot password?
+                </Link>
+              </p>
+            </div>
+
+            <button
+              disabled={loading}
+              className="text-white font-medium text-sm bg-blue-600 p-3 mt-4 rounded-lg shadow-sm hover:bg-blue-700 transition duration-150 ease-in-out hover:shadow-lg active:bg-blue-800 uppercase
+          "
+            >
+              {loading ? "Loading..." : "Sign In"}
+            </button>
+            <OAuth />
+
+            {error && <p className="text-red-500 mt-5">{error}</p>}
           </div>
-
-          <div className="flex flex-col ">
-            <span className="text-[16px] cursor-default font-semibold">
-              Password
-            </span>
-            <input
-              type="password"
-              className=" mt-2 px-4 py-2 text-xl text-gray-800 bg-white border-[1px] border-gray-400 rounded transition ease-out"
-              id="password"
-              onChange={handleChange}
-            />
-          </div>
-
-          <div className="flex justify-between  pt-5 lg:text-[15px]  text-[13px] ">
-            <p>
-              Don't have an Account?
-              <Link
-                to="/sign-up"
-                className="text-red-600 font-medium hover:text-red-700 transition duration-200 ease-in-out"
-              >
-                sign up
-              </Link>
-            </p>
-
-            <p>
-              <Link
-                to="/"
-                className="text-blue-500 font-medium hover:text-blue-600"
-              >
-                Forgot password?
-              </Link>
-            </p>
-          </div>
-
-          <button
-          disabled={loading}
-          className='text-white font-medium text-sm bg-blue-600 p-3 mt-4 rounded-lg shadow-sm hover:bg-blue-700 transition duration-150 ease-in-out hover:shadow-lg active:bg-blue-800 uppercase
-          '
-        >
-          {loading ? 'Loading...' : 'Sign In'}
-        </button>
-        <OAuth/>
-
-          {error && <p className="text-red-500 mt-5">{error}</p>}
-          </div>
-      
         </div>
       </form>
     </section>
