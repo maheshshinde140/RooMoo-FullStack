@@ -47,7 +47,7 @@ export default function SignUp() {
       </div>
 
       <form onSubmit={handleSubmit}>
-        <div className="bg-[#F0FDF4] border-[3px] mt-9 w-[450px] md:w-[450px] lg:w-[500px] h-[570px] rounded-[0.6rem] shadow-lg">
+        <div className="bg-[#F0FDF4] border-[3px] mt-9 sm:w-[400px] lg:w-[500px] rounded-[0.6rem] shadow-lg">
         <div className=" font-bold text-white text-[25px]  bg-[#ed5012] rounded-[0.4rem]  h-[48px] ">
             <p className="mx-4 p-1 font-bold text-[25px]">Sign Up</p>
           </div>
