@@ -39,7 +39,7 @@ RooMoo is a MERN (MongoDB, Express.js, React.js, Node.js) technology-based platf
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/your-username/RooMoo.git
+   git clone https://github.com/maheshshinde140/RooMoo-MERN.git
    ```
 
 2. Navigate to the project directory:
