@@ -1,7 +1,7 @@
 # RooMoo - Affordable Rooms, Flats, Houses, Hostels, and More!
 
-![RooMoo Logo](![rr](https://github.com/maheshshinde140/RooMoo-MERN/assets/97420827/0289d089-7b1a-431e-9f16-3b316301f37c)
-)
+![RooMoo Logo](https://github.com/maheshshinde140/RooMoo-MERN/assets/97420827/0289d089-7b1a-431e-9f16-3b316301f37c)
+
 
 ## Welcome to RooMoo - Your Ultimate Destination for Affordable Living Spaces!
 
