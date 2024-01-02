@@ -40,7 +40,7 @@ export default function SignUp() {
   };
 
   return (
-    <section className="flex flex:row flex-wrap justify-center sm:space-x-0 lg:space-x-20 items-center max-w-6xl mx-auto ">
+    <section className="flex flex:row flex-wrap justify-center sm:space-x-0 lg:space-x-28 items-center max-w-6xl mx-auto ">
       {/* left img */}
       <div className=" hidden lg:flex shrink-0">
         <img src={signN} alt="img" className="w-[500px] h-[420px] mt-9" />
