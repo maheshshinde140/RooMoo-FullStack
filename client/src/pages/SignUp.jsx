@@ -32,7 +32,7 @@ export default function SignUp() {
       }
       setLoading(false);
       setError(null);
-      navigate("/sign-in");
+      navigate("/");
     } catch (error) {
       setLoading(false);
       setError(error.message);
@@ -40,7 +40,7 @@ export default function SignUp() {
   };
 
   return (
-    <section className="flex items-center justify-center space-x-1 lg:space-x-40 max-w-6xl mx-auto">
+    <section className="flex flex:row flex-wrap justify-center sm:space-x-0 lg:space-x-20 items-center max-w-6xl mx-auto ">
       {/* left img */}
       <div className=" hidden lg:flex shrink-0">
         <img src={signN} alt="img" className="w-[500px] h-[420px] mt-9" />
@@ -48,47 +48,48 @@ export default function SignUp() {
 
       <form onSubmit={handleSubmit}>
         <div className="bg-[#F0FDF4] border-[3px] mt-9 w-[450px] md:w-[450px] lg:w-[500px] h-[570px] rounded-[0.6rem] shadow-lg">
-          <div className=" font-bold text-white text-[25px]  bg-[#ed5012] rounded-[0.4rem]  h-[48px] ">
+        <div className=" font-bold text-white text-[25px]  bg-[#ed5012] rounded-[0.4rem]  h-[48px] ">
             <p className="mx-4 p-1 font-bold text-[25px]">Sign Up</p>
           </div>
-
-          <div className="mx-4 my-6">
+          <div className="p-3 max-w-lg mx-auto ">
+          <form className="flex flex-col gap-4">
+          <div className="flex flex-col">
             <span className="text-[16px] cursor-default font-semibold">
-              Full Name of user
+              Full Name of user / UserName
             </span>
             <input
-              className="w-[400px] lg:w-[430px] mt-2 px-4 py-2 text-xl text-gray-800 bg-white border-[1px] border-gray-400 rounded transition ease-out"
+              className="mt-2 px-4 py-2 text-xl text-gray-800 bg-white border-[1px] border-gray-400 rounded transition ease-out"
               type="text"
               id="username"
               onChange={handleChange}
             />
           </div>
 
-          <div className=" mx-4 my-3">
+          <div className="flex flex-col ">
             <span className="text-[16px] cursor-default font-semibold">
               Email or Mobile phone Number
             </span>
             <input
-              className="w-[400px] lg:w-[430px] mt-2 px-4 py-2 text-xl text-gray-800 bg-white border-[1px] border-gray-400 rounded transition ease-out"
+              className="mt-2 px-4 py-2 text-xl text-gray-800 bg-white border-[1px] border-gray-400 rounded transition ease-out"
               type="email"
               id="email"
               onChange={handleChange}
             />
           </div>
 
-          <div className=" mx-4 my-3">
+          <div className="flex flex-col ">
             <span className="text-[16px] cursor-default font-semibold">
               Password
             </span>
             <input
               type="password"
-              className="w-[400px] lg:w-[430px] mt-2 px-4 py-2 text-xl text-gray-800 bg-white border-[1px] border-gray-400 rounded transition ease-out"
+              className=" mt-2 px-4 py-2 text-xl text-gray-800 bg-white border-[1px] border-gray-400 rounded transition ease-out"
               id="password"
               onChange={handleChange}
             />
           </div>
 
-          <div className="flex justify-between px-4 mt-11 lg:text-[15px]  text-[13px] ">
+          <div className="flex justify-between mt-8 lg:text-[15px]  text-[13px] ">
             <p>
               Have a Account?
               <Link
@@ -108,29 +109,18 @@ export default function SignUp() {
               </Link>
             </p>
           </div>
-
-          <div className="flex justify-center flex-wrap">
-            <div className="">
-              <button
-                disabled={loading}
-                className="w-[410px] lg:w-[440px] text-white font-medium text-sm bg-blue-600 px-7 py-2 mt-4 rounded-sm shadow-sm hover:bg-blue-700 transition duration-150 ease-in-out hover:shadow-lg active:bg-blue-800 uppercase
-        "
-                type="submit"
-              >
-                {loading ? "Loading..." : "Sign Up"}
-              </button>
-            </div>
-
-            <div
-              className="flex items-center  my-3 before:border-t  before:flex-1 before:border-gray-300 
-          after:border-t  after:flex-1 after:border-gray-300 "
+            <button
+              disabled={loading}
+              className="text-white font-medium p-3 bg-blue-600  rounded-lg shadow-sm hover:bg-blue-700 transition duration-150 ease-in-out hover:shadow-lg active:bg-blue-800 uppercase"
             >
-              {/* <p className="text-center font-semibold mx-4 ">OR</p> */}
-            </div>
+              {loading ? "Loading..." : "Sign Up"}
+            </button>
             <OAuth />
-          </div>
+          </form>
           {error && <p className="text-red-500 mt-5">{error}</p>}
         </div>
+        </div>
+       
       </form>
     </section>
   );

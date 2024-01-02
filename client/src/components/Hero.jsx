@@ -44,7 +44,7 @@ const Hero = () => {
       </div>
       <div className=" relative z-30 flex flex-col items-center w-full pt-14">
         <p
-          className="text-white lg:text-[60px] sm:text-[36px] font-bold whitespace-nowrap
+          className="text-white text-[25px] lg:text-[60px] sm:text-[40px] font-bold whitespace-nowrap
         "
         >
           {" "}
