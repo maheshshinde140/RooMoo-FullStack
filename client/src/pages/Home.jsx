@@ -7,7 +7,6 @@ import SwiperCore from 'swiper';
 import 'swiper/css/bundle';
 import 'swiper/css/autoplay';
 import ListingItem from '../components/ListingItem';
-import About from './About';
 import Footer from '../components/Footer';
 
 export default function Home() {

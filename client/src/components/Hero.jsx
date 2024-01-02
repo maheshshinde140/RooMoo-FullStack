@@ -106,7 +106,7 @@ const Hero = () => {
               type="search"
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className=" bg-white py-3 sm:w-[38rem] w-[30rem] rounded-full pl-5 shadow-md
+              className=" bg-white py-3 sm:w-[38rem] lg:w-[30rem] rounded-full pl-5 shadow-md
            placeholder:text-gray-500 placeholder:sm:text-[18px] outline-0"
               placeholder="Area, Adress, City, House Name or FlatNo..."
             />
