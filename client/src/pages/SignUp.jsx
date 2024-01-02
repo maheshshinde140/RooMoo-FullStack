@@ -32,7 +32,7 @@ export default function SignUp() {
       }
       setLoading(false);
       setError(null);
-      navigate("/");
+      navigate("/sign-in");
     } catch (error) {
       setLoading(false);
       setError(error.message);
@@ -40,25 +40,25 @@ export default function SignUp() {
   };
 
   return (
-    <section className="flex flex:row flex-wrap justify-center sm:space-x-0 lg:space-x-28 items-center max-w-6xl mx-auto ">
+    <section className="flex items-center justify-center sm:space-x-1 lg:space-x-40 max-w-6xl mx-auto">
       {/* left img */}
       <div className=" hidden lg:flex shrink-0">
         <img src={signN} alt="img" className="w-[500px] h-[420px] mt-9" />
       </div>
 
       <form onSubmit={handleSubmit}>
-        <div className="bg-[#F0FDF4] border-[3px] mt-9 sm:w-[400px] lg:w-[500px] rounded-[0.6rem] shadow-lg">
-        <div className=" font-bold text-white text-[25px]  bg-[#ed5012] rounded-[0.4rem]  h-[48px] ">
+        <div className="bg-[#F0FDF4] flex flex-col  border-[3px] mt-9 sm:w-[400px] lg:w-[500px] rounded-[0.6rem] shadow-lg">
+          <div className=" font-bold text-white text-[25px]  bg-[#ed5012] rounded-[0.4rem]  h-[48px] ">
             <p className="mx-4 p-1 font-bold text-[25px]">Sign Up</p>
           </div>
-          <div className="p-3 max-w-lg mx-auto ">
-          <form className="flex flex-col gap-4">
+          
+          <div className="flex flex-col mt-4 mx-2 space-y-2 ">
           <div className="flex flex-col">
             <span className="text-[16px] cursor-default font-semibold">
-              Full Name of user / UserName
+              Full Name of user
             </span>
             <input
-              className="mt-2 px-4 py-2 text-xl text-gray-800 bg-white border-[1px] border-gray-400 rounded transition ease-out"
+              className=" mt-2 px-4 py-2 text-xl text-gray-800 bg-white border-[1px] border-gray-400 rounded transition ease-out"
               type="text"
               id="username"
               onChange={handleChange}
@@ -70,7 +70,7 @@ export default function SignUp() {
               Email or Mobile phone Number
             </span>
             <input
-              className="mt-2 px-4 py-2 text-xl text-gray-800 bg-white border-[1px] border-gray-400 rounded transition ease-out"
+              className=" mt-2 px-4 py-2 text-xl text-gray-800 bg-white border-[1px] border-gray-400 rounded transition ease-out"
               type="email"
               id="email"
               onChange={handleChange}
@@ -89,7 +89,7 @@ export default function SignUp() {
             />
           </div>
 
-          <div className="flex justify-between mt-8 lg:text-[15px]  text-[13px] ">
+          <div className="flex justify-between  pt-5 lg:text-[15px]  text-[13px] ">
             <p>
               Have a Account?
               <Link
@@ -109,18 +109,20 @@ export default function SignUp() {
               </Link>
             </p>
           </div>
-            <button
-              disabled={loading}
-              className="text-white font-medium p-3 bg-blue-600  rounded-lg shadow-sm hover:bg-blue-700 transition duration-150 ease-in-out hover:shadow-lg active:bg-blue-800 uppercase"
-            >
-              {loading ? "Loading..." : "Sign Up"}
-            </button>
-            <OAuth />
-          </form>
+
+          <button
+          disabled={loading}
+          className='text-white font-medium text-sm bg-blue-600 p-3 mt-4 rounded-lg shadow-sm hover:bg-blue-700 transition duration-150 ease-in-out hover:shadow-lg active:bg-blue-800 uppercase
+          '
+        >
+          {loading ? 'Loading...' : 'Sign Up'}
+        </button>
+        <OAuth/>
+
           {error && <p className="text-red-500 mt-5">{error}</p>}
+          </div>
+      
         </div>
-        </div>
-       
       </form>
     </section>
   );
