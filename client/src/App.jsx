@@ -11,6 +11,7 @@ import UpdateListing from "./pages/UpdateListing";
 import Listing from "./pages/Listings";
 import Search from './pages/Search';
 import Connect from "./pages/Connect";
+import ForgotPassword from "./pages/ForgotPassword";
 
 
 
@@ -23,6 +24,7 @@ export default function App() {
         <Route path="/sign-in" element={<SignIn />} />
         <Route path="/sign-up" element={<SignUp />} />
         <Route path="/about" element={<About />} />
+        <Route path="/forgot-password" element={<ForgotPassword />} />
         <Route path="/connect" element={<Connect />} />
         <Route path="/search" element={<Search />} />
         <Route path='/listing/:listingId' element={<Listing />} />

@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import signN from "../assets/auth/signup.png";
 import OAuth from "../components/OAuth";
-import { toast } from "react-toastify";
 
 export default function SignUp() {
   const [formData, setFormdData] = useState({});
@@ -34,11 +33,9 @@ export default function SignUp() {
       setLoading(false);
       setError(null);
       navigate("/sign-in");
-      toast.success("Sign up was Successfull");
     } catch (error) {
       setLoading(false);
       setError(error.message);
-      toast.error("Something went wrong with the registration");
     }
   };
 

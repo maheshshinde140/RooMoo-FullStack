@@ -8,7 +8,6 @@ import {
   signInFailure,
 } from "../redux/user/userSlice";
 import OAuth from "../components/OAuth";
-import { toast } from "react-toastify";
 
 export default function SignIn() {
   const [formData, setFormdData] = useState({});
@@ -40,7 +39,6 @@ export default function SignIn() {
       navigate("/");
     } catch (error) {
       dispatch(signInFailure(error.message));
-      toast.error("Bad user credentials");
     }
   };
 
