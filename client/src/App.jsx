@@ -11,9 +11,6 @@ import UpdateListing from "./pages/UpdateListing";
 import Listing from "./pages/Listings";
 import Search from './pages/Search';
 import Connect from "./pages/Connect";
-import ForgotPassword from "./pages/ForgotPassword";
-import { ToastContainer } from "react-toastify";
-import 'react-toastify/dist/ReactToastify.css';
 
 
 
@@ -27,7 +24,6 @@ export default function App() {
         <Route path="/sign-up" element={<SignUp />} />
         <Route path="/about" element={<About />} />
         <Route path="/connect" element={<Connect />} />
-        <Route path="/forgot-password" element={<ForgotPassword />} />
         <Route path="/search" element={<Search />} />
         <Route path='/listing/:listingId' element={<Listing />} />
         
@@ -37,19 +33,6 @@ export default function App() {
           <Route path='/update-listing/:listingId' element={<UpdateListing />} />
         </Route>
       </Routes>
-      <ToastContainer
-        position="bottom-center"
-        autoClose={5000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="dark"
-      />
     </BrowserRouter>
-    
   );
 }
