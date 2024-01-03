@@ -162,15 +162,15 @@ export default function Profile() {
 
   return (
     <section className="flex sm:flex-col  lg:flex-row  items-center justify-center space-x-1 lg:space-x-40 max-w-6xl mx-auto">
-      <div className="flex flex-wrap lg:flex-row sm:flex-col lg:space-x-28 sm:space-x-0 ">
-      <div className="bg-[#F0FDF4] border-[3px] mt-9 w-[440px] md:w-[450px] lg:w-[500px] h-[620px] rounded-[0.6rem] shadow-lg max-w-lg mx-auto">
+      <div className="flex flex-wrap lg:flex-row sm:flex-col mx-5 lg:space-x-28 sm:space-x-0 ">
+      <div className="bg-[#F0FDF4] border-[3px] mt-9 rounded-[0.6rem] shadow-lg max-w-lg mx-auto">
         <div className=" font-bold text-white text-[25px]  bg-[#ed5012] rounded-[0.4rem]  h-[48px] ">
           <p className="mx-4 p-1 font-bold text-[25px]">Profile</p>
         </div>
 
         <form
           onSubmit={handleSubmit}
-          className="flex flex-col py-3 space-y-2 items-center justify-center"
+          className="flex flex-col mx-2 py-3  space-y-2 items-center justify-center"
         >
           <input
             onChange={(e) => setFile(e.target.files[0])}
@@ -205,7 +205,7 @@ export default function Profile() {
             placeholder="username"
             id="username"
             defaultValue={currentUser.username}
-            className="border w-[400px] lg:w-[430px] p-3 rounde-lg font-medium"
+            className="border w-full p-3 rounde-lg font-medium"
             onChange={handleChange}
           />
           <input
@@ -213,23 +213,23 @@ export default function Profile() {
             placeholder="email"
             id="email"
             defaultValue={currentUser.email}
-            className="border w-[400px] lg:w-[430px] p-3 rounde-lg font-medium"
+            className="border w-full p-3 rounde-lg font-medium"
             onChange={handleChange}
           />
           <input
             type="text"
             placeholder="password"
             id="password"
-            className="border w-[400px] lg:w-[430px] p-3 rounde-lg font-medium"
+            className="border w-full p-3 rounde-lg font-medium"
             onChange={handleChange}
           />
-          <div className="">
-            <button className="w-[400px] lg:w-[440px] text-white font-medium text-sm bg-green-600 px-7 py-2 mt-4 rounded-md shadow-sm hover:bg-green-700 transition duration-150 ease-in-out hover:shadow-lg active:bg-green-800 uppercase">
+          <div className="w-full ">
+            <button className=" text-white w-full font-medium text-sm bg-green-600 px-7 py-2 mt-4 rounded-md shadow-sm hover:bg-green-700 transition duration-150 ease-in-out hover:shadow-lg active:bg-green-800 uppercase">
               {loading ? "Loading..." : "Update"}
             </button>
             <div>
               <Link className="" to={"/create-listing"}>
-                <button className="w-[400px] lg:w-[440px] text-white font-medium text-sm bg-blue-600 px-7 py-2 mt-4 rounded-md shadow-sm hover:bg-blue-700 transition duration-150 ease-in-out hover:shadow-lg active:bg-blue-800 uppercase">
+                <button className=" text-white w-full font-medium text-sm bg-blue-600 px-7 py-2 mt-4 rounded-md shadow-sm hover:bg-blue-700 transition duration-150 ease-in-out hover:shadow-lg active:bg-blue-800 uppercase">
                   Upload Property
                 </button>
               </Link>
@@ -237,17 +237,17 @@ export default function Profile() {
           </div>
         </form>
 
-        <div className="flex justify-between mx-5 lg:mx-7 my-6">
+        <div className="flex justify-between gap-14 mx-3">
           <span
             onClick={handleDeleteUser}
             className="text-red-700 cursor-pointer"
           >
-            <button className="w-[190px] lg:w-[200px] text-white font-medium text-sm bg-red-600 px-7 py-1 mt-4 rounded-md shadow-sm hover:bg-red-700 transition duration-150 ease-in-out hover:shadow-lg active:bg-red-800 uppercase">
+            <button className="w-full text-white font-medium text-sm bg-red-600 px-7 py-1 mt-4 rounded-md shadow-sm hover:bg-red-700 transition duration-150 ease-in-out hover:shadow-lg active:bg-red-800 uppercase">
               Delete Account
             </button>
           </span>
           <span onClick={handleSignOut} className="text-red-700 cursor-pointer">
-            <button className="w-[190px] lg:w-[200px] text-white font-medium text-sm bg-slate-700 px-7 py-1 mt-4 rounded-md shadow-sm hover:bg-slate-800 transition duration-150 ease-in-out hover:shadow-lg active:bg-slate-900 uppercase">
+            <button className="w-full text-white font-medium text-sm bg-slate-700 px-12 py-1 mt-4 rounded-md shadow-sm hover:bg-slate-800 transition duration-150 ease-in-out hover:shadow-lg active:bg-slate-900 uppercase">
               Sign out
             </button>
           </span>
@@ -269,14 +269,14 @@ export default function Profile() {
         </div>
 
         {userListings && userListings.length > 0 && (
-        <div className='flex flex-col gap-4 bg-[#F0FDF4] border-[3px] mt-9 w-[440px] md:w-[450px] lg:w-[500px] h-[595px] rounded-[0.6rem] shadow-lg max-w-lg mx-auto'>
+        <div className='flex flex-col gap-4  bg-[#F0FDF4] border-[3px] my-9  rounded-[0.6rem] shadow-lg max-w-lg mx-auto'>
           <div className=" font-bold text-white text-[25px]  bg-[#ed5012] rounded-[0.4rem]  h-[48px] ">
           <p className="mx-4 p-1 font-bold text-[25px]">Your Properties</p>
         </div>
           {userListings.map((listing) => (
             <div
               key={listing._id}
-              className='border-[1px] border-gray-400 bg-white rounded-lg p-3 mx-2 flex justify-between items-center gap-4'
+              className='border-[1px] border-gray-400 bg-white rounded-lg p-3 mx-2 mb-3 flex justify-between items-center gap-4'
             >
               <Link to={`/listing/${listing._id}`}>
                 <img

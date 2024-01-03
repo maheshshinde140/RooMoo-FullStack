@@ -171,7 +171,7 @@ export default function CreateListing() {
   };
   return (
     <section className="flex items-center justify-center space-x-1 lg:space-x-40 max-w-6xl mx-auto">
-      <div className="bg-[#F0FDF4] border-[3px] mt-9 w-[730px] md:w-[800px] lg:w-[1000px] h-[800px]  rounded-[0.6rem] shadow-lg">
+      <div className="bg-[#F0FDF4] border-[3px] my-9 mx-4  rounded-[0.6rem] shadow-lg">
         <div className=" font-bold text-white text-[25px]  bg-green-500 rounded-[0.4rem]  h-[48px] ">
           <p className="mx-4 p-1 font-bold text-[25px]">Edit Property</p>
         </div>
