@@ -2,6 +2,8 @@
 
 ![RooMoo Logo](https://github.com/maheshshinde140/RooMoo-MERN/assets/97420827/0289d089-7b1a-431e-9f16-3b316301f37c)
 
+Visit [https://roomooo.onrender.com/](https://roomooo.onrender.com/) to access RooMoo locally.
+
 
 ## Welcome to RooMoo - Your Ultimate Destination for Affordable Living Spaces!
 
@@ -69,7 +71,6 @@ RooMoo is a MERN (MongoDB, Express.js, React.js, Node.js) technology-based platf
    npm start
    ```
 
-Visit [https://roomooo.onrender.com/](https://roomooo.onrender.com/) to access RooMoo locally.
 
 ## Contributing
 
