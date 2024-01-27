@@ -33,18 +33,18 @@ export default function Connect() {
             <div class="bg-white p-8 rounded-lg shadow-md">
                 <h2 class="text-3xl font-semibold mb-4">Contact Us</h2>
                 <div className='flex gap-3'>
-                <IoLogoYoutube  /><p class="text-gray-700 hover:text-red-800 hover:font-bold  "> Youtube</p>
+                <IoLogoYoutube  /><p class="text-gray-700 cursor-pointer hover:text-red-800 hover:font-bold  "> Youtube</p>
                 </div>
                 <div className='flex gap-3 '>
-                <FaInstagram /><p class="text-gray-700 hover:text-purple-800 hover:font-bold "> Instagram </p>
+                <FaInstagram /><p class="text-gray-700 cursor-pointer hover:text-purple-800 hover:font-bold "> Instagram </p>
                 </div>
 
                 <div className='flex gap-3 hover:font-bold'>
-                <FaSquarePhone /><p class="text-gray-700  "> Phone: <a className='hover:text-black hover:font-bold ' href="">8000-4564-1298</a></p>
+                <FaSquarePhone /><p class="text-gray-700 cursor-pointer  "> Phone: <a className='hover:text-black hover:font-bold ' href="">8000-4564-1298</a></p>
                 </div>
 
                 <div className='flex gap-3'>
-                <IoMdMail /><p class="text-gray-700 hover:font-bold "> Email: <a className='hover:text-blue-800 hover:font-bold ' href="officialroomoo@gmail.com">officialroomoo@gmail.com</a> </p>
+                <IoMdMail /><p class="text-gray-700 cursor-pointer hover:font-bold "> Email: <a className='hover:text-blue-800 hover:font-bold ' href="officialroomoo@gmail.com">officialroomoo@gmail.com</a> </p>
                 </div>
                
                 {/* <!-- Additional Contact Information, Social Media Links, etc. can be added here --> */}
