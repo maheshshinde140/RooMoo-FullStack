@@ -1,5 +1,5 @@
 import { instance } from "../index.js";
-import crypto, { sign } from "crypto";
+import crypto from "crypto";
 import Joi from "joi";
 import Payment from "../models/payment.model.js";
 
@@ -26,7 +26,7 @@ export const checkout = async (req, res) => {
     };
 
     const order = await instance.orders.create(options);
-    console.log(order);
+    console.log("Order created:", order);
 
     return res.status(200).json({
       success: true,
@@ -41,9 +41,9 @@ export const checkout = async (req, res) => {
 };
 
 export const paymentVerification = async (req, res) => {
-  const { razorpay_order_id, razorpay_payment_id, razorpay_signature } =
-    req.body;
-    console.log(req.body);
+  const { razorpay_order_id, razorpay_payment_id, razorpay_signature } = req.body;
+  console.log("Payment verification request body:", req.body);
+
   try {
     const body = razorpay_order_id + "|" + razorpay_payment_id;
 
@@ -52,9 +52,9 @@ export const paymentVerification = async (req, res) => {
       .update(body.toString())
       .digest("hex");
 
-      const isSignatureValid = expectedSignature === razorpay_signature;
+    const isSignatureValid = expectedSignature === razorpay_signature;
 
-     if (isSignatureValid) {
+    if (isSignatureValid) {
       // If the signature is valid, save the payment details
       const payment = new Payment({
         razorpay_order_id,
@@ -62,14 +62,12 @@ export const paymentVerification = async (req, res) => {
         razorpay_signature,
       });
 
-
       await payment.save();
-      // console.log(req.body);
+      console.log("Payment verified and saved:", payment);
 
-      res.redirect(
-        `/paymentsuccess?reference=${razorpay_payment_id}`
-      );
+      res.redirect(`/paymentsuccess?reference=${razorpay_payment_id}`);
     } else {
+      console.error("Invalid signature:", expectedSignature, razorpay_signature);
       return res.status(400).json({
         success: false,
         error: "Invalid signature",
